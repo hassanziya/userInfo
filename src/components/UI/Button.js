@@ -4,7 +4,7 @@ import styles from "./Button.module.css";
 export const Button = (props) => {
   return (
     <button
-      className={styles.button}
+      className={props.className}
       type={props.type || "button"}
       onClick={props.onClick}
     >

@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Card from "../UI/Card";
 import styles from "./AddUser.module.css";
 import Button from "../UI/Button";
 import ErrorModal from "../UI/ErrorModal";
+import Wrapper from "../Helpers/Wrapper";
 
 const AddUser = (props) => {
+  const entereName = useRef();
+  const entereAge = useRef();
   const [enteredUserName, setenteredUserName] = useState("");
   const [enteredUserAge, setenteredUserAge] = useState("");
   const [error, seterror] = useState();
   const addUserHandler = (event) => {
+    console.log(entereName.current.value);
+    console.log(entereAge.current.value);
     event.preventDefault();
     if (
       enteredUserName.trim().length === 0 ||
@@ -44,7 +49,7 @@ const AddUser = (props) => {
     seterror(null);
   };
   return (
-    <div>
+    <Wrapper>
       {error && (
         <ErrorModal
           closeModal={closeModalHandler}
@@ -56,22 +61,30 @@ const AddUser = (props) => {
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">UserName</label>
           <input
+            className="form-control"
             id="username"
             type="text"
             onChange={userNameChangeHandler}
             value={enteredUserName}
+            ref={entereName}
           />
           <label htmlFor="age">Age (year)</label>
           <input
+            className="form-control"
             id="age"
             type="number"
             onChange={userAgeChangeHandler}
             value={enteredUserAge}
+            ref={entereAge}
           />
-          <Button type="submit">Add User</Button>
+          <div className="pt-3">
+            <Button type="submit" className="btn btn-md btn-primary ">
+              Add User
+            </Button>
+          </div>
         </form>
       </Card>
-    </div>
+    </Wrapper>
   );
 };
 

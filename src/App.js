@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AddUser from "./components/Users/AddUser";
 import UserList from "./components/Users/UserList";
+import styles from "./App.module.css";
 
 function App() {
   const [usersList, setUsersList] = useState([]);
@@ -14,7 +15,7 @@ function App() {
     });
   };
   return (
-    <div>
+    <div className={styles.background}>
       <AddUser onAddUser={addUserHandler} />
       <UserList users={usersList} />
     </div>
